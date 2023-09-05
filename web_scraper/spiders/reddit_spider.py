@@ -1,22 +1,22 @@
 ```python
 import scrapy
-from web_scraper.items import RedditScraperItem
+from web_scraper.items import WebScraperItem
 
-class RedditSpider(scrapy.Spider):
-    name = "giveaway_contest_scraper"
-    start_urls = ['http://www.apple.com/giveaway', 'http://www.developer.com/giveaway', 'http://www.mac.com/giveaway'] # insert actual giveaway or contest websites
+class WebSpider(scrapy.Spider):
+    name = "generic_web_scraper"
+    start_urls = ['http://www.website.com'] 
 
     def parse(self, response):
-        for post in response.css('div.thing'): #this div.thing needs to be replaced by the CSS selector for give away posts in the selected websites
-            item = RedditScraperItem()
-            item['giveaway_name'] = post.css('p.title a::text').get() # update CSS selectors to match actual CSS element
-            item['url'] = post.css('p.title a::attr(href)').get() # update CSS selectors to match actual CSS element
-            item['registration_deadline'] = post.css('div.deadline.unvoted::attr(date)').get() # update CSS selectors to match actual CSS element
-            item['entry_requirements'] = post.css('div.info.unvoted::attr(desc)').get() # update CSS selectors to match actual CSS element
-            item['entry_form_url'] = post.css('div.form.unvoted::attr(href)').get() # update CSS selectors to match actual CSS element
+        for post in response.css('post_css_selector'):
+            item = WebScraperItem()
+            item['giveaway_name'] = post.css('giveaway_name_css_selector').get() 
+            item['url'] = post.css('url_css_selector').get() 
+            item['registration_deadline'] = post.css('registration_deadline_css_selector').get() 
+            item['entry_requirements'] = post.css('entry_requirements_css_selector').get() 
+            item['entry_form_url'] = post.css('entry_form_url_css_selector').get() 
             yield item
 
-        next_page = response.css('span.next-button a::attr(href)').get() # update to correctly follow pagination if any
+        next_page = response.css('next_page_css_selector').get() 
         if next_page is not None:
             yield response.follow(next_page, self.parse)
 ```

@@ -1,5 +1,6 @@
+```python
 # Scrapy settings for the new project
-BOT_NAME = 'apple_mac_developer_cpu_giveaway_scraper'
+BOT_NAME = 'generic_web_scraper'
 
 SPIDER_MODULES = ['web_scraper.spiders']
 NEWSPIDER_MODULE = 'web_scraper.spiders'
@@ -31,3 +32,5 @@ AUTOTHROTTLE_DEBUG = False
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+```
+
