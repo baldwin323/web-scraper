@@ -1,5 +1,5 @@
-# Scrapy settings for reddit_scraper project
-BOT_NAME = 'reddit_scraper'
+# Scrapy settings for the new project
+BOT_NAME = 'apple_mac_developer_cpu_giveaway_scraper'
 
 SPIDER_MODULES = ['web_scraper.spiders']
 NEWSPIDER_MODULE = 'web_scraper.spiders'
